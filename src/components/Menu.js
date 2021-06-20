@@ -3,13 +3,16 @@ import {useUrl} from "../url-context";
 
 const Menu = () => {
 
-    const {url, handleChangeUrl} = useUrl();
+    const {url, handleChangeUrl, loading} = useUrl();
 
     return (
-        <div className="menu height">
-            <h2>Меню</h2>
-            <input type="text" value={url} onChange={handleChangeUrl}/>
-        </div>
+        <>
+            {loading ? (<div className="loading_outer"></div>) : <></>}
+            <div className="menu height">
+                <h2>Меню</h2>
+                <input type="text" value={url} onChange={handleChangeUrl}/>
+            </div>
+        </>
     );
 }
 

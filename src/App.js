@@ -1,16 +1,16 @@
 import './App.css';
 import Menu from "./components/Menu";
 import Simulator from "./components/Simulator";
-import {UrlProvider} from "./url-context";
+import {ContentProvider} from "./url-context";
+import React from "react";
 
 function App() {
-
     return (
         <div className="app">
-            <UrlProvider>
+            <ContentProvider>
                 <Menu />
                 <Simulator />
-            </UrlProvider>
+            </ContentProvider>
         </div>
     );
 }

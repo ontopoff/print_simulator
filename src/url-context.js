@@ -1,14 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 
-const UrlContext = React.createContext()
+const AppContext = React.createContext();
 
 function useUrl() {
-    const context = React.useContext(UrlContext)
+    const context = React.useContext(AppContext)
     if (!context) {
-        throw new Error(`useUrl must be used within a CountProvider`)
+        throw new Error(`useUrl must be used within a ContentProvider`)
     }
 
-    const [url, setUrl] = context
+    const [url, setUrl, loading, setLoading] = context
 
     const handleChangeUrl = (e) => {
         e.preventDefault();
@@ -20,13 +20,16 @@ function useUrl() {
         url,
         setUrl,
         handleChangeUrl,
+        loading,
+        setLoading,
     }
 }
 
-function UrlProvider(props) {
+function ContentProvider(props) {
     const [url, setUrl] = React.useState("https://baconipsum.com/api/?type=all-meat&sentences=5&format=json")
-    const value = React.useMemo(() => [url, setUrl], [url])
-    return <UrlContext.Provider value={value} {...props} />
+    const [loading, setLoading] = useState(false);
+    const value = React.useMemo(() => [url, setUrl, loading, setLoading], [url, loading])
+    return <AppContext.Provider value={value} {...props} />
 }
 
-export {UrlProvider, useUrl}
+export {ContentProvider, useUrl}
