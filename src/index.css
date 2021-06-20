@@ -13,6 +13,11 @@
     src: local('Dela Gothic One'), url(./fonts/DelaGothicOne-Regular.ttf) format('truetype');
 }
 
+@font-face {
+    font-family: 'Prompt';
+    src: local('Prompt'), url(./fonts/Prompt-Regular.ttf) format('truetype');
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -80,6 +85,7 @@ body {
 @media screen and (max-width: 700px) {
     .outer_simulator {
         margin-right: 0;
+        margin-top: 60px;
     }
 
     .menu {
@@ -211,15 +217,22 @@ body {
     border-radius: 45px;
     background-color: #fff;
 
-    padding: 15px 20px;
+    padding: 0 20px 15px 20px;
 }
 
 .menu_res {
     font-family: Quicksand, 'Roboto', sans-serif;
+    font-size: 14px;
 }
 
 .input_test {
-    min-height: 200px;
+    min-height: 150px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .loading_outer {
@@ -308,4 +321,96 @@ body {
     height: 1px;
     pointer-events: none;
     width: auto;
+}
+
+.hidden_letter {
+    animation: animateLetterDisappearance 0.5s ease-in-out;
+    opacity: 0;
+}
+
+.letter {
+    position: relative;
+    font-size: 20px;
+    padding: 0 1px;
+    font-family: Prompt, sans-serif;
+}
+
+.curr_letter {
+    background-color: #ffea78;
+    color: #fff;
+    border-radius: 4px;
+    padding: 0 3px;
+
+}
+
+@keyframes animateLetterDisappearance {
+    0% {
+        opacity: 1;
+        right: 0;
+        color: #c1dc6b;
+    }
+    100% {
+        opacity: 0;
+        right: 20px;
+    }
+}
+
+.error_letter {
+    background-color: #ee393d;
+    animation: tremor 0.2s ease-out;
+}
+
+@keyframes tremor {
+    0%, 15% {
+        top: -2px;
+    }
+    30%, 45% {
+        top: 2px;
+    }
+    60%, 75% {
+        top: -1px;
+    }
+    90% {
+        top: 1px;
+    }
+    100% {
+        top: 0;
+    }
+}
+
+.menu_tag {
+    text-align: center;
+    margin: 0;
+}
+
+.menu_tag span {
+    border-bottom: 2px solid #000;
+    display: inline-block;
+    line-height: 0.85;
+}
+
+.err_icon {
+    width: 55px;
+    position: relative;
+    top: -2px;
+}
+
+.chronometer_icon {
+    width: 28px;
+    position: relative;
+    top: -3px;
+}
+
+.velocity_icon {
+    width: 30px;
+    position: relative;
+    top: -3px;
+}
+
+.err_span {
+    color: #ee393d;
+}
+
+.menu_item {
+    vertical-align: middle !important;
 }
