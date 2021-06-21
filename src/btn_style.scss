@@ -99,3 +99,55 @@ button {
   }
 
 }
+
+
+$bg_reload: #fff;
+$fg: #06c17f;
+$border-width: .2rem;
+$corner-size: 1rem;
+$dur: .3s;
+
+.corner-button {
+  cursor: pointer;
+  background: transparent;
+  border: $border-width solid currentColor;
+  padding: 0.5rem 1.5rem;
+  color: #000;
+  top: -2px;
+  position: relative;
+  transition: color $dur;
+
+  &:hover {
+    color: $fg;
+    &::before { width: 0; }
+    &::after { height: 0; }
+  }
+  &:active {
+    border-width: $border-width / 2;
+  }
+  span {
+    position: relative;
+    z-index: 2;
+  }
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    background: $bg_reload;
+    z-index: 1;
+    transition: all $dur;
+  }
+  &::before {
+    width: calc(100% - #{$corner-size});
+    height: calc(101% + #{$border-width * 2});
+    top: -$border-width;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  &::after {
+    height: calc(100% - #{$corner-size});
+    width: calc(101% + #{$border-width * 2});
+    left: -$border-width;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

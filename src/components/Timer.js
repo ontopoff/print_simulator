@@ -19,9 +19,10 @@ const Timer = ({time, started, resTime, setResTime, currLetterIndex, setSpeed}) 
 
     useEffect(() => {
         if (started) {
-            let currTime = handleResTime(Date.now() - time);
+            let diffTime = Date.now() - time;
+            let currTime = handleResTime(diffTime);
             setResTime(currTime);
-            let currSpeed = handleSpeed(Date.now() - time, currLetterIndex + 1);
+            let currSpeed = handleSpeed(diffTime, currLetterIndex + 1);
             setSpeed(currSpeed);
 
         }

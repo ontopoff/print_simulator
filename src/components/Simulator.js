@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import '../btn_style.scss';
 import {useUrl} from "../url-context";
 import TestWindow from "./TestWindow";
-import {fadeInLeft} from 'react-animations';
+import {fadeInLeft, flipInX} from 'react-animations';
 import styled, {keyframes} from 'styled-components';
 
 const Simulator = () => {
@@ -10,12 +10,14 @@ const Simulator = () => {
     const [open, setOpen] = useState(false);
     const [text, setText] = useState("");
     const [loaded, setLoaded] = useState(false);
+    const [reload, setReload] = useState(false);
     // const [defaultLang, setDefaultLang] = useState("en-ru");
 
 
     const {url, loading, setLoading} = useUrl();
 
     const FadeInLeft = styled.div`animation: 1s ${keyframes`${fadeInLeft}`}`;
+    const FlipInX = styled.div`animation: 4s ${keyframes`${flipInX}`}`;
 
     function provideFetchReq(url) {
 
@@ -31,6 +33,7 @@ const Simulator = () => {
                 setLoaded(true);
                 setLoading(false);
                 setOpen(true);
+                setReload(false);
                 // }
             })
             .catch((error) => {
@@ -88,14 +91,16 @@ const Simulator = () => {
                                     </button>
                                 </div>
                             </div>
-                        ) : (<>
-                            <FadeInLeft>
-                                <div className="col-md-12 col-xl-10 offset-xl-1">
-                                    <TestWindow text={text} loaded={loaded}/>
-                                </div>
-                            </FadeInLeft>
-                        </>)}
-
+                        ) : !reload ? (
+                            <>
+                                <FadeInLeft>
+                                    <div className="col-md-12 col-xl-10 offset-xl-1">
+                                        <TestWindow text={text} loaded={loaded} handleClickTestBtn={handleClickTestBtn}
+                                                    setReload={setReload} FlipInX={FlipInX}/>
+                                    </div>
+                                </FadeInLeft>
+                            </>
+                        ) : <></>}
                     </div>
                 </div>
             </div>

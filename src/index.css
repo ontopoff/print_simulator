@@ -70,6 +70,34 @@ body {
     margin-right: 80px;
 }
 
+.err_icon {
+    width: 55px;
+    position: relative;
+    top: -2px;
+}
+
+.chronometer_icon {
+    width: 28px;
+    position: relative;
+    top: -3px;
+}
+
+.velocity_icon {
+    width: 30px;
+    position: relative;
+    top: -3px;
+}
+
+.accuracy_icon {
+    width: 80px;
+}
+
+.medal_icon {
+    width: 70px;
+    position: relative;
+    left: -20px;
+}
+
 @media screen and (max-width: 962px) {
     .start_simulation {
         text-align: center;
@@ -85,10 +113,10 @@ body {
 @media screen and (max-width: 700px) {
     .outer_simulator {
         margin-right: 0;
-        margin-top: 60px;
     }
 
     .menu {
+        position: relative;
         top: 0;
         width: 100%;
         min-height: 60px;
@@ -108,7 +136,22 @@ body {
         font-size: 32px;
         padding: 0 20px;
     }
+    .medal_icon {
+        left: 0;
+    }
 }
+
+@media screen and (max-width: 400px) {
+    .err_col {
+        position: relative;
+        top:-15px;
+    }
+
+    .corner-button {
+        margin-bottom: 5px;
+    }
+}
+
 
 @keyframes animatedBackground {
     0% {
@@ -208,7 +251,7 @@ body {
     border: 20px solid #ffea78;
     border-radius: 45px;
     background-color: #fff;
-    min-height: 250px;
+    min-height: 200px;
     position: relative;
 }
 
@@ -389,28 +432,19 @@ body {
     line-height: 0.85;
 }
 
-.err_icon {
-    width: 55px;
-    position: relative;
-    top: -2px;
-}
-
-.chronometer_icon {
-    width: 28px;
-    position: relative;
-    top: -3px;
-}
-
-.velocity_icon {
-    width: 30px;
-    position: relative;
-    top: -3px;
-}
-
 .err_span {
     color: #ee393d;
 }
 
-.menu_item {
-    vertical-align: middle !important;
+.accuracy_info {
+    padding: 20px 0;
+    font-family: Quicksand, 'Roboto', sans-serif;
+    font-size: 20px;
+    text-align: center;
 }
+
+.bad_medal {
+    font-size: 16px;
+}
+
+
