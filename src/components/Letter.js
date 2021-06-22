@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 import useEventListener from "@use-it/event-listener";
 
-const Letter = ({typed, curr, letter, showErr, setShowErr}) => {
+const Letter = (props) => {
+
+    const {typed, curr, letter, showErr, setShowErr} = props;
 
     const [spanClass, setSpanClass] = useState("letter");
 

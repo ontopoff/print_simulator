@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import '../btn_style.scss';
-import {useUrl} from "../url-context";
+import {useStates} from "../context";
 import TestWindow from "./TestWindow";
 import {fadeInLeft, flipInX} from 'react-animations';
 import styled, {keyframes} from 'styled-components';
@@ -14,7 +14,7 @@ const Simulator = () => {
     // const [defaultLang, setDefaultLang] = useState("en-ru");
 
 
-    const {url, loading, setLoading} = useUrl();
+    const {url, loading, setLoading} = useStates();
 
     const FadeInLeft = styled.div`animation: 1s ${keyframes`${fadeInLeft}`}`;
     const FlipInX = styled.div`animation: 4s ${keyframes`${flipInX}`}`;

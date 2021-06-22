@@ -1,10 +1,11 @@
 import './App.css';
 import Menu from "./components/Menu";
 import Simulator from "./components/Simulator";
-import {ContentProvider} from "./url-context";
+import {ContentProvider} from "./context";
 import React from "react";
 
 function App() {
+
     return (
         <div className="app">
             <ContentProvider>

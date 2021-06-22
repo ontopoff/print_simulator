@@ -1,0 +1,102 @@
+.label_checkbox_text, .label_checkbox_workout {
+    display: block;
+    left: 0;
+    top: 0;
+    position: relative;
+    width: 300px;
+    height: 40px;
+    z-index: 10;
+    line-height: 40px;
+    font-weight: bold;
+    background: #303030;
+    -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -moz-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -ms-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -o-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
+}
+
+.label_checkbox_text:after {
+    color: #fff;
+    content: "Готовый текст";
+    width: 150px;
+    height: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    background: #5953ff;
+    -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -moz-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -ms-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -o-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
+}
+
+.label_checkbox_workout:after {
+    color: #fff;
+    content: "На время";
+    width: 150px;
+    height: 40px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    background: #5953ff;
+    -webkit-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -moz-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -ms-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    -o-transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transition: all 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    cursor: pointer;
+}
+
+.label_checkbox_text:before {
+    content: "Свой текст";
+    position: absolute;
+    color: #fff;
+    left: 150px;
+    top: 0;
+    display: block;
+    width: 150px;
+    height: 40px;
+}
+
+.label_checkbox_workout:before {
+    content: "На скорость";
+    position: absolute;
+    color: #fff;
+    left: 150px;
+    top: 0;
+    display: block;
+    width: 150px;
+    height: 40px;
+}
+
+#checkbox_text, #checkbox_workout {
+    display: none;
+}
+
+:checked + .label_checkbox_text:after {
+    left: 150px;
+    background: #5953ff;
+    content: "Свой текст";
+}
+
+:checked + .label_checkbox_workout:after {
+    left: 150px;
+    background: #5953ff;
+    content: "На скорость";
+}
+
+:checked + .label_checkbox_text:before {
+    left: 0;
+    content: "Готовый текст";
+}
+
+:checked + .label_checkbox_workout:before {
+    left: 0;
+    content: "На время";
+}
