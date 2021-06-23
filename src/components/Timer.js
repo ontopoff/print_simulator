@@ -17,13 +17,15 @@ const Timer = (props) => {
         setTimeLimitStatus
     } = props;
 
+    const MAX_TIME = 420000;
+
     function handleTimerActivity() {
         let diffTime = Date.now() - time;
         let currTime = handleResTime(diffTime);
         setResTime(currTime);
         let currSpeed = handleSpeed(diffTime, currLetterIndex + 1);
         setSpeed(currSpeed);
-        if (workoutType && (diffTime >= testTime * 60000)) {
+        if ((workoutType && (diffTime >= testTime * 60000)) || (diffTime >= MAX_TIME)) {
             setTimeLimitStatus(false);
             handleStop(currLetterIndex + 2, errors)
         }

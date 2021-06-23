@@ -1,4 +1,3 @@
-import './App.css';
 import Menu from "./components/Menu";
 import Simulator from "./components/Simulator";
 import {ContentProvider} from "./context";

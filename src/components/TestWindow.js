@@ -9,7 +9,7 @@ import Results from "./Results";
 
 const TestWindow = (props) => {
 
-    const {text, loaded, handleClickTestBtn, setReload, FlipInX, testTime, workoutType} = props;
+    const {text, loaded, handleClickTestBtn, setReload, FlipInX, testTime, workoutType, handleReload} = props;
 
     const [queue, setQueue] = useState([]);
 
@@ -65,11 +65,6 @@ const TestWindow = (props) => {
         countAccuracy(currLetterIndex, errors);
         countWPM(currLetterIndex);
         setShowRes(true);
-    }
-
-    function handleReload(e) {
-        setReload(true);
-        handleClickTestBtn(e);
     }
 
     function countAccuracy(typedSymbols, errors) {

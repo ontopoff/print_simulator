@@ -41,7 +41,7 @@ button {
         top: 0;
         bottom: 0;
         margin: auto;
-        background: #5953ff;
+        background: $blue;
         animation: arrowAnimate 2s linear infinite;
         &.arrow {
           @include transition(all, 0.45s, cubic-bezier(0.65,0,.076,1));
@@ -56,8 +56,8 @@ button {
             right: 0.0625rem;
             width: 0.625rem;
             height: 0.625rem;
-            border-top: 0.125rem solid #5953ff;
-            border-right: 0.125rem solid #5953ff;
+            border-top: 0.125rem solid $blue;
+            border-right: 0.125rem solid $blue;
             transform: rotate(45deg);
           }
         }
@@ -84,7 +84,7 @@ button {
       width: 100%;
       .icon {
         &.arrow {
-          background: #5953ff;
+          background: $blue;
           transform: translate(1rem, 0);
         }
       }
@@ -94,7 +94,7 @@ button {
 
 @keyframes arrowAnimate {
   50% {
-    background: #5953ff;
+    background: $blue;
     transform: translate(1rem, 0);
   }
 

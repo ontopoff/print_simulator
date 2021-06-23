@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 import {Modal, ModalHeader, ModalBody, ModalFooter, Button} from "reactstrap";
-import "../checkbox_styles.css";
+import "../css/checkbox_styles.css";
 
 
 const Customization = (props) => {
 
     const {
         toggle,
-        modal,
+        modalMenu,
         checkedTypeText,
         workoutType,
         ownText,
@@ -24,7 +24,7 @@ const Customization = (props) => {
     const [keyboard, setKeyboard] = useState(true);
 
     return (
-        <Modal isOpen={modal} toggle={toggle} backdrop={backdrop} keyboard={keyboard}>
+        <Modal isOpen={modalMenu} toggle={toggle} backdrop={backdrop} keyboard={keyboard}>
             <ModalHeader toggle={toggle}>
                 <p className="modal_header">Настройки</p>
             </ModalHeader>

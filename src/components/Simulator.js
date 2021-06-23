@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import '../btn_style.scss';
+import React, {useEffect, useState} from "react";
+import '../css/btn_style.scss';
 import {useStates} from "../context";
 import TestWindow from "./TestWindow";
 import {fadeInLeft, flipInX} from 'react-animations';
@@ -19,12 +19,21 @@ const Simulator = () => {
         ownText,
         defaultText,
         testTime,
-        workoutType
+        workoutType,
+        reload,
+        setReload,
+        modalMenu,
+        open,
+        setOpen
     } = useStates();
 
-    const [open, setOpen] = useState(false);
+    useEffect(() => {
+        if(!modalMenu && reload) {
+            handleReload()
+        }
+    }, [modalMenu])
+
     const [loaded, setLoaded] = useState(false);
-    const [reload, setReload] = useState(false);
 
     const FadeInLeft = styled.div`animation: 1s ${keyframes`${fadeInLeft}`}`;
     const FlipInX = styled.div`animation: 4s ${keyframes`${flipInX}`}`;
@@ -54,10 +63,14 @@ const Simulator = () => {
         }
     }
 
-    function handleClickTestBtn(e) {
-        e.preventDefault();
+    function handleClickTestBtn() {
         setLoading(true);
         provideFetchReq(url);
+    }
+
+    function handleReload() {
+        setReload(true);
+        handleClickTestBtn();
     }
 
     return (
@@ -81,6 +94,7 @@ const Simulator = () => {
                                                     FlipInX={FlipInX}
                                                     testTime={testTime}
                                                     workoutType={workoutType}
+                                                    handleReload={handleReload}
                                         />
                                     </div>
                                 </FadeInLeft>

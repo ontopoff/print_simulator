@@ -11,16 +11,25 @@ const Menu = () => {
         testTime,
         workoutType,
         ownText,
+        modalMenu,
+        setModalMenu,
         handleOwnText,
         toggleCheckbox,
         toggleCheckboxWorkout,
         handleSelectNumberSentence,
-        handleSelectTime
+        handleSelectTime,
+        setReload,
+        open
     } = useStates();
 
-    const [modal, setModal] = useState(false);
 
-    const toggle = () => setModal(!modal);
+
+    const toggle = () => {
+        setModalMenu(!modalMenu);
+        if(open) {
+            setReload(true);
+        }
+    }
 
     return (
         <>
@@ -29,7 +38,7 @@ const Menu = () => {
                 <button className="cta" onClick={toggle}>Меню</button>
             </div>
             <Customization toggle={toggle}
-                           modal={modal}
+                           modalMenu={modalMenu}
                            checkedTypeText={checkedTypeText}
                            workoutType={workoutType}
                            ownText={ownText}
@@ -40,6 +49,7 @@ const Menu = () => {
                            toggleCheckboxWorkout={toggleCheckboxWorkout}
                            handleSelectNumberSentence={handleSelectNumberSentence}
                            handleSelectTime={handleSelectTime}
+                           setModalMenu={setModalMenu}
             />
         </>
     );

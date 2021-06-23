@@ -27,7 +27,13 @@ function useStates() {
         text,
         setText,
         defaultText,
-        setDefaultText
+        setDefaultText,
+        reload,
+        setReload,
+        modalMenu,
+        setModalMenu,
+        open,
+        setOpen
     ] = context
 
     function handleOwnText(e) {
@@ -74,6 +80,12 @@ function useStates() {
         setText,
         defaultText,
         setDefaultText,
+        reload,
+        setReload,
+        modalMenu,
+        setModalMenu,
+        open,
+        setOpen,
         handleChangeUrl,
         handleOwnText,
         toggleCheckbox,
@@ -100,7 +112,9 @@ function ContentProvider(props) {
     const [workoutType, setWorkoutType] = useState(false);
     const [ownText, setOwnText] = useState("");
     const [text, setText] = useState("");
-
+    const [reload, setReload] = useState(false);
+    const [modalMenu, setModalMenu] = useState(false);
+    const [open, setOpen] = useState(false);
 
     const value = React.useMemo(() =>
         [
@@ -121,8 +135,14 @@ function ContentProvider(props) {
             text,
             setText,
             defaultText,
-            setDefaultText
-        ], [url, loading, checkedTypeText, sentenceNum, testTime, workoutType, ownText, text, defaultText])
+            setDefaultText,
+            reload,
+            setReload,
+            modalMenu,
+            setModalMenu,
+            open,
+            setOpen
+        ], [url, loading, checkedTypeText, sentenceNum, testTime, workoutType, ownText, text, defaultText, reload, modalMenu, open])
     return <AppContext.Provider value={value} {...props} />
 }
 
