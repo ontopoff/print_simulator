@@ -431,6 +431,13 @@ body {
     }
 }
 
+/*Instructions*/
+
+.modalInstructions_bold {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 /*Viewpoints styles*/
 
 @media screen and (max-width: 962px) {
