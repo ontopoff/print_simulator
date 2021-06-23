@@ -437,6 +437,9 @@ body {
     font-weight: bold;
     text-transform: uppercase;
 }
+.modalInstructions_body {
+    font-family: IBM Plex Sans, 'Roboto', sans-serif;
+}
 
 /*Viewpoints styles*/
 
