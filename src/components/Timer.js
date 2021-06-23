@@ -1,15 +1,38 @@
 import React, {useEffect} from "react";
 import chronometer_icon from "../img/chronometer.svg";
 
-const Timer = ({time, started, resTime, setResTime, currLetterIndex, setSpeed}) => {
+const Timer = (props) => {
+
+    const {
+        time,
+        started,
+        resTime,
+        setResTime,
+        currLetterIndex,
+        setSpeed,
+        handleStop,
+        errors,
+        workoutType,
+        testTime,
+        setTimeLimitStatus
+    } = props;
+
+    function handleTimerActivity() {
+        let diffTime = Date.now() - time;
+        let currTime = handleResTime(diffTime);
+        setResTime(currTime);
+        let currSpeed = handleSpeed(diffTime, currLetterIndex + 1);
+        setSpeed(currSpeed);
+        if (workoutType && (diffTime >= testTime * 60000)) {
+            setTimeLimitStatus(false);
+            handleStop(currLetterIndex + 2, errors)
+        }
+    }
 
     useEffect(() => {
         const timer = setInterval(() => {
             if (started) {
-                let currTime = handleResTime(Date.now() - time);
-                setResTime(currTime);
-                let currSpeed = handleSpeed(Date.now() - time, currLetterIndex + 1);
-                setSpeed(currSpeed);
+                handleTimerActivity();
             }
         }, 10);
         return () => {
@@ -19,12 +42,7 @@ const Timer = ({time, started, resTime, setResTime, currLetterIndex, setSpeed}) 
 
     useEffect(() => {
         if (started) {
-            let diffTime = Date.now() - time;
-            let currTime = handleResTime(diffTime);
-            setResTime(currTime);
-            let currSpeed = handleSpeed(diffTime, currLetterIndex + 1);
-            setSpeed(currSpeed);
-
+            handleTimerActivity();
         }
     }, [currLetterIndex]);
 

@@ -24,7 +24,7 @@ const Menu = () => {
 
     return (
         <>
-            <div className="menu height transition">
+            <div className="menu height">
                 {loading ? (<div className="loading_outer"></div>) : <></>}
                 <button className="cta" onClick={toggle}>Меню</button>
             </div>

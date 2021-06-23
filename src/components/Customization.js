@@ -66,7 +66,7 @@ const Customization = (props) => {
                                 </div>
                             </div>
                         }
-                        <div className="modal_group mt-3">
+                        <div className="modal_group mt-3 mb-3">
                             <p className="menu_label">Тип тренировки</p>
                             <div className="btn-group">
                                 <input type="checkbox" id="checkbox_workout" onChange={toggleCheckboxWorkout} checked={workoutType}/>
@@ -74,7 +74,7 @@ const Customization = (props) => {
                             </div>
                         </div>
                         {workoutType ?
-                            <div className="modal_group mt-3">
+                            <div className="modal_group mb-3">
                                 <div className="form-group">
                                     <p className="menu_label">Количество минут</p>
                                     <select className="form-control" onChange={handleSelectTime}

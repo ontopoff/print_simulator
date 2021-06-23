@@ -3,14 +3,13 @@ import useEventListener from "@use-it/event-listener";
 import Letter from "./Letter";
 import error_icon from "../img/error_icon.svg";
 import velocity_icon from "../img/velocity.svg";
-import accuracy_icon from "../img/accuracy.svg";
-import gold_medal from "../img/gold.svg";
-import silver_medal from "../img/silver.svg";
-import copper_medal from "../img/copper.svg";
 
 import Timer from "./Timer";
+import Results from "./Results";
 
-const TestWindow = ({text, loaded, handleClickTestBtn, setReload, FlipInX}) => {
+const TestWindow = (props) => {
+
+    const {text, loaded, handleClickTestBtn, setReload, FlipInX, testTime, workoutType} = props;
 
     const [queue, setQueue] = useState([]);
 
@@ -25,6 +24,7 @@ const TestWindow = ({text, loaded, handleClickTestBtn, setReload, FlipInX}) => {
     const [time, setTime] = useState(0);
     const [resTime, setResTime] = useState("00:00");
     const [started, setStarted] = useState(false);
+    const [timeLimitStatus, setTimeLimitStatus] = useState(true);
 
     const [showRes, setShowRes] = useState(false);
     const [accuracy, setAccuracy] = useState(0);
@@ -39,18 +39,14 @@ const TestWindow = ({text, loaded, handleClickTestBtn, setReload, FlipInX}) => {
     });
 
     useEventListener('keydown', ({key}) => {
-        if (currLetterIndex + 1 !== queue.length) {
+        if (currLetterIndex + 1 !== queue.length && timeLimitStatus) {
             if (!(key === "CapsLock" || key === "Shift" || key === "Enter" || key === "Backspace" || key === "Alt")) {
                 if (key === queue[currLetterIndex + 1]) {
                     if (currLetterIndex === -1) {
                         setTime(Date.now());
                         setStarted(true);
                     } else if (currLetterIndex + 2 === queue.length) {
-                        setStarted(false);
-
-                        countAccuracy(currLetterIndex + 2, errors);
-                        countWPM();
-                        setShowRes(true);
+                        handleStop(currLetterIndex + 2, errors)
                     }
                     setShowErr(false);
                     setCurrLetterIndex(currLetterIndex + 1);
@@ -64,6 +60,13 @@ const TestWindow = ({text, loaded, handleClickTestBtn, setReload, FlipInX}) => {
         }
     });
 
+    function handleStop(currLetterIndex, errors) {
+        setStarted(false);
+        countAccuracy(currLetterIndex, errors);
+        countWPM(currLetterIndex);
+        setShowRes(true);
+    }
+
     function handleReload(e) {
         setReload(true);
         handleClickTestBtn(e);
@@ -74,11 +77,10 @@ const TestWindow = ({text, loaded, handleClickTestBtn, setReload, FlipInX}) => {
         setAccuracy(res);
     }
 
-    function countWPM() {
+    function countWPM(currLetterIndex) {
         let sec = ((Date.now() - time) / 1000) / 60;
-        let wpm = Math.floor((queue.length / 5) / sec);
-        console.log(wpm)
-        setWPM(wpm);
+        let finalWPM = Math.floor((currLetterIndex / 5) / sec);
+        setWPM(finalWPM);
     }
 
     return (
@@ -95,6 +97,11 @@ const TestWindow = ({text, loaded, handleClickTestBtn, setReload, FlipInX}) => {
                                        setResTime={setResTime}
                                        currLetterIndex={currLetterIndex}
                                        setSpeed={setSpeed}
+                                       handleStop={handleStop}
+                                       errors={errors}
+                                       workoutType={workoutType}
+                                       testTime={testTime}
+                                       setTimeLimitStatus={setTimeLimitStatus}
                                 />
                             </div>
                             <div className="col-auto align-self-center mt-2 mt-sm-0">
@@ -121,35 +128,9 @@ const TestWindow = ({text, loaded, handleClickTestBtn, setReload, FlipInX}) => {
 
                 {showRes ? (
                     <FlipInX>
-                        <div className="row justify-content-center">
-                            <div className="col-auto accuracy_info">
-                                <p>Точность / Скорость</p>
-                                <div className="row justify-content-center">
-                                    <div className="col-12 col-sm-4 align-self-center">
-                                        <span>{accuracy}%</span>
-                                    </div>
-                                    <div className="col-12 col-sm-4 align-self-center mt-2 mt-sm-0">
-                                            <img src={accuracy_icon} className="accuracy_icon"/>
-                                    </div>
-                                    <div className="col-12 col-sm-4 align-self-center mt-3 mt-sm-0">
-                                        {wpm >= 40 ?
-                                            <>
-                                                <img src={gold_medal} className="medal_icon"/>
-                                            </>
-                                            : wpm >= 35 ?
-                                                <>
-                                                    <img src={silver_medal} className="medal_icon"/>
-                                                </>
-                                                : wpm >= 23 ?
-                                                    <>
-                                                        <img src={copper_medal} className="medal_icon"/>
-                                                    </>
-                                                    : <span className="bad_medal">Неплохо, но можно и лучше</span>
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <Results accuracy={accuracy}
+                                 wpm={wpm}
+                        />
                     </FlipInX>
                 ) : (
                     <div className="row">
